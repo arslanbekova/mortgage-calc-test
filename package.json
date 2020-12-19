@@ -1,0 +1,23 @@
+{
+  "name": "mortgage-calc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "eslint": "eslint --ext .jsx --ext .js src/",
+    "test": "npm run eslint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "eslint": "^7.16.0",
+    "eslint-config-htmlacademy": "^0.6.0",
+    "eslint-plugin-vue": "^7.3.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
