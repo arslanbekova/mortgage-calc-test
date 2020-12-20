@@ -9,7 +9,7 @@
 import CalcItems from '@/components/CalcItems'
 import Result from '@/components/Result'
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     CalcItems,
     Result,
