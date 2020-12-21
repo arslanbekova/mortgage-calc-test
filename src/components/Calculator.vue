@@ -1,6 +1,6 @@
 <template>
 <div class="calculator">
-  <form class="form">
+  <form class="form" @submit.prevent="saveData">
     <fieldset class="form__field">
       <label for="price">Стоимость недвижимости</label>
       <currency-input class="form__input" id="price" name="price" v-model.number="price"/>
@@ -40,8 +40,8 @@
       <input class="form__input" id="rate" name="rate" v-model.number="rate">
     </fieldset>
     <fieldset class="form__field form__field--buttons">
-      <button class="button button--save" type="submit">Сохранить</button>
-      <button class="button" type="reset" v-on:click="resetResult">Очистить</button>
+      <button class="button button--save" type="submit" v-on:click="saveData">Сохранить</button>
+      <button class="button" type="reset" v-on:click="resetForm">Очистить</button>
   </fieldset>
   </form>
   <section class="result">
@@ -76,6 +76,24 @@ export default {
     }
   },
 
+  mounted() {
+    if (localStorage.price) {
+      this.price = Number(localStorage.price);
+    }
+
+    if (localStorage.initialPayment) {
+      this.initialPayment = Number(localStorage.initialPayment);
+    }
+
+    if (localStorage.term) {
+      this.term = localStorage.term;
+    }
+
+    if (localStorage.rate) {
+      this.rate = localStorage.rate;
+    }
+  },
+
   computed: {
     creditAmount: {
       get: function () {
@@ -104,8 +122,16 @@ export default {
   },
 
   methods: {
-    resetResult: function(event) {
+    resetForm: function(event) {
       this.creditAmount = 0;
+      localStorage.clear();
+    },
+
+    saveData: function () {
+      localStorage.price = this.price;
+      localStorage.initialPayment = this.initialPayment;
+      localStorage.term = this.term;
+      localStorage.rate = this.rate;
     }
   },
 
