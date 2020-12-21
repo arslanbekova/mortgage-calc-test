@@ -41,7 +41,7 @@
     </fieldset>
     <fieldset class="form__field form__field--buttons">
       <button class="button button--save" type="submit">Сохранить</button>
-      <button class="button" type="reset">Очистить</button>
+      <button class="button" type="reset" v-on:click="resetResult">Очистить</button>
   </fieldset>
   </form>
   <section class="result">
@@ -77,8 +77,14 @@ export default {
   },
 
   computed: {
-    creditAmount: function () {
-      return this.price - this.initialPayment
+    creditAmount: {
+      get: function () {
+        return this.price - this.initialPayment
+      },
+      set: function (newValue) {
+        this.price = newValue
+        this.initialPayment = newValue
+      }
     },
 
     monthlyPayment: function () {
@@ -94,7 +100,13 @@ export default {
       if (this.monthlyPayment) {
         return (this.monthlyPayment * (this.term * 12)) - this.price + this.initialPayment
       }
-    },
+    }
+  },
+
+  methods: {
+    resetResult: function(event) {
+      this.creditAmount = 0;
+    }
   },
 
   filters: {
