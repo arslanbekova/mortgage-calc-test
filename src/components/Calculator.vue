@@ -83,16 +83,16 @@ export default {
 
     monthlyPayment: function () {
       let monthlyTerm = this.term * 12;
-        return Math.round(this.CreditAmount * (this.rate/1200 + (this.rate/1200)/((1+this.rate/1200)**monthlyTerm-1)))
+      return Math.round(this.creditAmount * (this.rate/1200 + (this.rate/1200)/((1+this.rate/1200)**monthlyTerm-1)))
     },
 
     requaredIncome: function () {
-      return Math.round(5 * this.MonthlyPayment/3)
+      return Math.round(5 * this.monthlyPayment/3)
     },
 
     overPayment: function () {
-      if (this.MonthlyPayment) {
-        return (this.MonthlyPayment * (this.term * 12)) - this.price + this.initialPayment
+      if (this.monthlyPayment) {
+        return (this.monthlyPayment * (this.term * 12)) - this.price + this.initialPayment
       }
     },
   },
