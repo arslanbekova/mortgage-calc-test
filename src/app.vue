@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    <CalcItems />
-    <Result />
+    <Calculator />
   </div>
 </template>
 
 <script>
-import CalcItems from '@/components/CalcItems'
-import Result from '@/components/Result'
+import Calculator from '@/components/Calculator'
 export default {
   name: 'App',
   components: {
-    CalcItems,
-    Result,
+    Calculator,
   },
 }
 </script>
@@ -25,8 +22,5 @@ export default {
   margin: 0 auto;
   padding-top: 50px;
   width: 1200px;
-
-  display: flex;
-  justify-content: space-around;
 }
 </style>

@@ -1,12 +1,13 @@
 <template>
+<div class="calculator">
   <form class="form">
     <fieldset class="form__field">
       <label for="price">Стоимость недвижимости</label>
-      <input class="form__input" id="price" name="price" type="number">
+      <input class="form__input" id="price" name="price" v-model.number="price">
     </fieldset>
     <fieldset class="form__field">
       <label for="initial_payment">Первоначальный взнос</label>
-      <input class="form__input" id="initial_payment" name="initial_payment" type="number">
+      <input class="form__input" id="initial_payment" name="initial_payment" v-model.number="initialPayment">
       <ul class="form__list checkbox-list">
         <li class="form__option">
           <input class="checkbox-list__input visually-hidden" type="checkbox" id="10">
@@ -32,18 +33,78 @@
     </fieldset>
     <fieldset class="form__field">
       <label for="term">Срок кредита</label>
-      <input class="form__input" id="term" name="term" type="number">
+      <input class="form__input" id="term" name="term" v-model.number="term">
     </fieldset>
     <fieldset class="form__field">
       <label for="rate">Процентная ставка</label>
-      <input class="form__input" id="rate" name="rate" type="number">
+      <input class="form__input" id="rate" name="rate" v-model.number="rate">
     </fieldset>
     <fieldset class="form__field form__field--buttons">
       <button class="button button--save" type="submit">Сохранить</button>
       <button class="button" type="reset">Очистить</button>
   </fieldset>
   </form>
+  <section class="result">
+      <div class="result__item-wrapper">
+        <h2 class="result__item-title">Ежемесячный платеж</h2>
+        <p class="result__item">{{ monthlyPayment | toRUB }}</p>
+      </div>
+      <div class="result-item__wrapper">
+        <h2 class="result__item-title">Необходимый доход</h2>
+        <p class="result__item">{{ requaredIncome | toRUB }}</p>
+      </div>
+      <div class="result-item__wrapper">
+        <h2 class="result__item-title">Переплата</h2>
+        <p class="result__item">{{ overPayment | toRUB }}</p>
+      </div>
+      <div class="result-item__wrapper">
+        <h2 class="result__item-title">Тело кредита</h2>
+        <p class="result__item">{{ creditAmount | toRUB }}</p>
+      </div>
+  </section>
+</div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      price: '',
+      initialPayment: '',
+      term: '',
+      rate: ''
+    }
+  },
+
+  computed: {
+    creditAmount: function () {
+      return this.price - this.initialPayment
+    },
+
+    monthlyPayment: function () {
+      let monthlyTerm = this.term * 12;
+        return Math.round(this.CreditAmount * (this.rate/1200 + (this.rate/1200)/((1+this.rate/1200)**monthlyTerm-1)))
+    },
+
+    requaredIncome: function () {
+      return Math.round(5 * this.MonthlyPayment/3)
+    },
+
+    overPayment: function () {
+      if (this.MonthlyPayment) {
+        return (this.MonthlyPayment * (this.term * 12)) - this.price + this.initialPayment
+      }
+    },
+  },
+
+  filters: {
+    toRUB: function (value) {
+      if (!value) return '';
+      return value.toLocaleString()
+    }
+  }
+}
+</script>
 
 <style scoped>
   .visually-hidden {
@@ -60,6 +121,10 @@
     clip-path: inset(100%);
     clip: rect(0 0 0 0);
     overflow: hidden;
+  }
+
+  .calculator {
+    display: flex;
   }
 
   .form {
@@ -162,5 +227,37 @@
   background-color: rgb(88, 149, 235);
   color: white;
 }
+
+.result {
+    background-color: rgb(226, 220, 220);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 250px;
+    width: 600px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 42px;
+
+    border-radius: 5px;
+  }
+
+  .result-item__wrapper {
+    width: 45%;
+  }
+
+  .result__item-title {
+    font-size: 16px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .result__item {
+    font-size: 24px;
+    margin: 0;
+  }
 </style>
 
