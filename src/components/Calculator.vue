@@ -33,11 +33,11 @@
     </fieldset>
     <fieldset class="form__field">
       <label for="term">Срок кредита</label>
-      <input class="form__input" id="term" name="term" v-model.number="term">
+      <currency-input class="form__input" id="term" name="term" v-model.number="term"/>
     </fieldset>
     <fieldset class="form__field">
       <label for="rate">Процентная ставка</label>
-      <input class="form__input" id="rate" name="rate" v-model.number="rate">
+      <currency-input class="form__input" id="rate" name="rate" v-model.number="rate" />
     </fieldset>
     <fieldset class="form__field form__field--buttons">
       <button class="button button--save" type="submit" v-on:click="saveData">Сохранить</button>
@@ -132,7 +132,7 @@ export default {
       localStorage.initialPayment = this.initialPayment;
       localStorage.term = this.term;
       localStorage.rate = this.rate;
-    }
+    },
   },
 
   filters: {

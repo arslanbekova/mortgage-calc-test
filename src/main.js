@@ -16,7 +16,10 @@ const pluginOptions = {
     },
     precision: 0,
     autoDecimalMode: true,
-    valueRange: { min: 0 },
+    valueRange: {
+      min: 0,
+      max: 999000000
+    },
     allowNegative: false
    }
 }
