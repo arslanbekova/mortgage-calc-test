@@ -3,11 +3,11 @@
   <form class="form">
     <fieldset class="form__field">
       <label for="price">Стоимость недвижимости</label>
-      <input class="form__input" id="price" name="price" v-model.number="price">
+      <currency-input class="form__input" id="price" name="price" v-model.number="price"/>
     </fieldset>
     <fieldset class="form__field">
       <label for="initial_payment">Первоначальный взнос</label>
-      <input class="form__input" id="initial_payment" name="initial_payment" v-model.number="initialPayment">
+      <currency-input class="form__input" id="initial_payment" name="initial_payment" v-model.number="initialPayment"/>
       <ul class="form__list checkbox-list">
         <li class="form__option">
           <input class="checkbox-list__input visually-hidden" type="checkbox" id="10">
@@ -69,10 +69,10 @@
 export default {
   data() {
     return {
-      price: '',
-      initialPayment: '',
-      term: '',
-      rate: ''
+      price: 0,
+      initialPayment: 0,
+      term: 0,
+      rate: 0
     }
   },
 
