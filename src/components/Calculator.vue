@@ -8,25 +8,25 @@
     <fieldset class="form__field">
       <label for="initial_payment">Первоначальный взнос</label>
       <currency-input class="form__input" id="initial_payment" name="initial_payment" v-model.number="initialPayment"/>
-      <ul class="form__list checkbox-list">
+      <ul class="form__list radio-list">
         <li class="form__option">
-          <input class="checkbox-list__input visually-hidden" type="checkbox" id="10">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="10" id="ten" name="initial-payment-group">
           <label for="10">10%</label>
         </li>
         <li class="form__option">
-          <input class="checkbox-list__input visually-hidden" type="checkbox" id="15">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="15" id="fifteen" name="initial-payment-group">
           <label for="15">15%</label>
         </li>
         <li class="form__option">
-          <input class="checkbox-list__input visually-hidden" type="checkbox" id="20">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="20" id="twenty" name="initial-payment-group">
           <label for="20">20%</label>
         </li>
         <li class="form__option">
-          <input class="checkbox-list__input visually-hidden" type="checkbox" id="25">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="25" id="twenty-five" name="initial-payment-group">
           <label for="25">25%</label>
         </li>
         <li class="form__option">
-          <input class="checkbox-list__input visually-hidden" type="checkbox" id="30">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="30" id="thirty" name="initial-payment-group">
           <label for="30">30%</label>
         </li>
       </ul>
@@ -72,7 +72,8 @@ export default {
       price: 0,
       initialPayment: 0,
       term: 0,
-      rate: 0
+      rate: 0,
+      percent: 0
     }
   },
 
@@ -121,6 +122,28 @@ export default {
     }
   },
 
+  watch: {
+    initialPayment:  {
+      handler: function (val) {
+        if (this.percent) {
+          this.price = val / (this.percent / 100)
+        }
+      }
+    },
+
+    price: {
+      handler: function (val) {
+        if (this.percent) {
+          this.initialPayment = this.price * (this.percent / 100);
+        }
+      }
+    },
+
+    percent: {
+      handler: 'setAnchor',
+    },
+  },
+
   methods: {
     resetForm: function(event) {
       this.creditAmount = 0;
@@ -132,6 +155,10 @@ export default {
       localStorage.initialPayment = this.initialPayment;
       localStorage.term = this.term;
       localStorage.rate = this.rate;
+    },
+
+    setAnchor: function (event) {
+      this.initialPayment = this.price * (this.percent / 100);
     },
   },
 
@@ -250,7 +277,7 @@ export default {
   justify-content: space-between;
 }
 
-.checkbox-list label {
+.radio-list label {
   cursor: pointer;
 
   width: 35px;
@@ -261,7 +288,7 @@ export default {
   background-color: rgb(226, 217, 217);
 }
 
-.checkbox-list__input:checked + label {
+.radio-list__input:checked + label {
   background-color: rgb(88, 149, 235);
   color: white;
 }
