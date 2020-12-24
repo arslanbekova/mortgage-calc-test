@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "eslint": "eslint --ext .jsx --ext .js src/",
+    "eslint": "eslint --ext .vue --ext .js src/",
     "test": "npm run eslint"
   },
   "dependencies": {
