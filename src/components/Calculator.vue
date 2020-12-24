@@ -4,7 +4,7 @@
       class="form"
       @submit.prevent="saveData"
     >
-      <fieldset class="form__field">
+      <fieldset class="form__field form__field--price">
         <label for="price">Стоимость недвижимости</label>
         <currency-input
           id="price"
@@ -13,7 +13,7 @@
           name="price"
         />
       </fieldset>
-      <fieldset class="form__field">
+      <fieldset class="form__field form__field--initial-payment">
         <label for="initial_payment">Первоначальный взнос</label>
         <currency-input
           id="initial_payment"
@@ -79,7 +79,7 @@
           </li>
         </ul>
       </fieldset>
-      <fieldset class="form__field">
+      <fieldset class="form__field form__field--term">
         <label for="term">Срок кредита</label>
         <currency-input
           id="term"
@@ -88,7 +88,7 @@
           name="term"
         />
       </fieldset>
-      <fieldset class="form__field">
+      <fieldset class="form__field form__field--rate">
         <label for="rate">Процентная ставка</label>
         <currency-input
           id="rate"
@@ -299,6 +299,8 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    position: relative;
   }
 
   .form__field label {
@@ -356,6 +358,54 @@ export default {
   .form__input:focus,
   .form__input:active {
     border-color: rgb(32, 31, 31);
+  }
+
+  .form__field--price::after {
+    content: "\0020BD";
+    font-size: 20px;
+    color: black;
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 50px;
+    right: 10px;
+  }
+
+  .form__field--initial-payment::after {
+    content: "\0020BD";
+    font-size: 20px;
+    color: black;
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 50px;
+    right: 10px;
+  }
+
+  .form__field--term::after {
+    content: "лет";
+    font-size: 20px;
+    color: black;
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 50px;
+    right: 30px;
+  }
+
+  .form__field--rate::after {
+    content: "%";
+    font-size: 20px;
+    color: black;
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 50px;
+    right: 15px;
   }
 
   .form__list {

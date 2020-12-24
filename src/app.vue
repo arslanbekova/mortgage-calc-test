@@ -21,6 +21,6 @@ export default {
 
   margin: 0 auto;
   padding-top: 50px;
-  width: 1200px;
+  min-width: 1200px;
 }
 </style>
