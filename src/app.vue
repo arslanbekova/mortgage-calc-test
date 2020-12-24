@@ -13,14 +13,3 @@ export default {
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-
-  margin: 0 auto;
-  padding-top: 50px;
-  min-width: 1200px;
-}
-</style>
