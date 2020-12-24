@@ -73,7 +73,8 @@ export default {
       initialPayment: 0,
       term: 0,
       rate: 0,
-      percent: 0
+      percent: 0,
+      MONTHS_COUNT: 12,
     }
   },
 
@@ -107,7 +108,7 @@ export default {
     },
 
     monthlyPayment: function () {
-      let monthlyTerm = this.term * 12;
+      let monthlyTerm = this.term * this.MONTHS_COUNT;
       return Math.round(this.creditAmount * (this.rate/1200 + (this.rate/1200)/((1+this.rate/1200)**monthlyTerm-1)))
     },
 
@@ -117,7 +118,7 @@ export default {
 
     overPayment: function () {
       if (this.monthlyPayment) {
-        return (this.monthlyPayment * (this.term * 12)) - this.price + this.initialPayment
+        return (this.monthlyPayment * (this.term * this.MONTHS_COUNT)) - this.price + this.initialPayment
       }
     }
   },
