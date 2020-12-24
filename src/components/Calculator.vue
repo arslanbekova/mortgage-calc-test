@@ -10,23 +10,23 @@
       <currency-input class="form__input" id="initial_payment" name="initial_payment" v-model.number="initialPayment"/>
       <ul class="form__list radio-list">
         <li class="form__option">
-          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="10" id="ten" name="initial-payment-group">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="10" id="10" name="initial-payment-group">
           <label for="10">10%</label>
         </li>
         <li class="form__option">
-          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="15" id="fifteen" name="initial-payment-group">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="15" id="15" name="initial-payment-group">
           <label for="15">15%</label>
         </li>
         <li class="form__option">
-          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="20" id="twenty" name="initial-payment-group">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="20" id="20" name="initial-payment-group">
           <label for="20">20%</label>
         </li>
         <li class="form__option">
-          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="25" id="twenty-five" name="initial-payment-group">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="25" id="25" name="initial-payment-group">
           <label for="25">25%</label>
         </li>
         <li class="form__option">
-          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="30" id="thirty" name="initial-payment-group">
+          <input class="radio-list__input visually-hidden" type="radio" v-model="percent" :value="30" id="30" name="initial-payment-group">
           <label for="30">30%</label>
         </li>
       </ul>
@@ -88,11 +88,11 @@ export default {
     }
 
     if (localStorage.term) {
-      this.term = localStorage.term;
+      this.term = Number(localStorage.term);
     }
 
     if (localStorage.rate) {
-      this.rate = localStorage.rate;
+      this.rate = Number(localStorage.rate);
     }
   },
 
