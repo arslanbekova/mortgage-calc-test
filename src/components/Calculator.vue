@@ -177,7 +177,7 @@ export default {
 
     monthlyPayment() {
       let monthlyTerm = this.term * this.MONTHS_COUNT;
-      return Math.round(this.creditAmount * (this.rate / 1200 + (this.rate / 1200) / ((1 + this.rate / 1200) * monthlyTerm - 1)));
+      return Math.round(this.creditAmount * (this.rate / 1200 + (this.rate / 1200) / ((1 + this.rate / 1200) ** monthlyTerm - 1)));
     },
 
     requaredIncome() {
