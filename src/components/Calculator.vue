@@ -106,7 +106,7 @@
           Сохранить
         </button>
         <button
-          class="button"
+          class="button button--reset"
           type="reset"
           @click="resetForm"
         >
@@ -153,6 +153,7 @@
 
 <script>
 export default {
+  name: "Calculator",
   data() {
     return {
       price: 0,

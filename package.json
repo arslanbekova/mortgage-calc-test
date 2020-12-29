@@ -5,9 +5,23 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
     "eslint": "eslint --ext .vue --ext .js src/",
-    "test": "npm run eslint"
+    "test": "npm run test.jest && npm run eslin",
+    "test.jest": "jest"
   },
+
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    }
+  },
+
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
@@ -15,10 +29,13 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "^4.5.9",
     "@vue/cli-service": "~4.5.0",
+    "@vue/test-utils": "^1.0.3",
     "eslint": "^7.16.0",
     "eslint-config-htmlacademy": "^0.6.0",
     "eslint-plugin-vue": "^7.3.0",
+    "vue-jest": "^3.0.7",
     "vue-template-compiler": "^2.6.11"
   }
 }
